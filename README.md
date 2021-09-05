@@ -1,2 +1,0 @@
-# hacker-clone
-HackerNews Clone
