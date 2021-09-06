@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../App.css";
 
 function Cell({ blogsID, load, pageNumber }) {
   const [blogs, setBlog] = useState([]);
@@ -19,7 +20,14 @@ function Cell({ blogsID, load, pageNumber }) {
         console.error("error", err);
       });
   }
-  if (load) return <h4>Loading...</h4>;
+  if (blogs.length !== blogsID.length)
+    return (
+      <div className="load">
+        <div className="one"></div>
+        <div className="two"></div>
+        <div className="three"></div>
+      </div>
+    );
   if (!blogs) return null;
   return (
     <div>
