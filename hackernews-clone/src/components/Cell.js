@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function Cell(props) {
-  const [blog, setBlog] = useState(null);
+function Cell({ blogsID, load }) {
+  const [blogs, setBlog] = useState([]);
   useEffect(() => {
-    getData();
-  }, []);
-  async function getData() {
+    setBlog([]);
+    blogsID?.forEach((id) => {
+      getData(id);
+    });
+  }, [blogsID]);
+  async function getData(id) {
     await axios
-      .get(
-        `https://hacker-news.firebaseio.com/v0/item/${props.id}.json?print=pretty`
-      )
+      .get(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
       .then((response) => {
-        setBlog(response.data);
+        setBlog((x) => [...x, response.data]);
       })
       .catch((err) => {
         console.error("error", err);
       });
   }
-  if (!blog) return null;
+  if (load) return <h4>Loading...</h4>;
+  if (!blogs) return null;
   return (
-    <tr>
-      <td>{blog.title}</td>
-    </tr>
+    <div>
+      {blogs.map((blog) => {
+        return blog.title;
+      })}
+    </div>
   );
 }
 
