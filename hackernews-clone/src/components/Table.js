@@ -38,12 +38,12 @@ function Table() {
 
   return (
     <div>
-      <p>Page {currentPage} </p>
-      <Cell blogsID={currentPosts} load={loading} />
+      <Cell blogsID={currentPosts} load={loading} pageNumber={currentPage} />
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={blogID.length}
         paginate={paginate}
+        pageNumber={currentPage}
       />
     </div>
   );

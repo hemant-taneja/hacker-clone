@@ -1,10 +1,16 @@
 .App {
   text-align: center;
 }
-
+body {
+  background-color: #282c34;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.pageList:hover {
+  background-color: #1d1d1f;
 }
 
 @media (prefers-reduced-motion: no-preference) {
